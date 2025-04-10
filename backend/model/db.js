@@ -16,18 +16,14 @@ const getUserById = async (id) => {
 };
 
 const insertUser = async (username, password, isAdmin = false) => {
-    try {
-        const user = await prisma.user.create({
-            data: {
-                username,
-                password,
-                isAdmin,
-            },
-        });
-        return user;
-    } catch (error) {
-        throw error;
-    }
+    const user = await prisma.user.create({
+        data: {
+            username,
+            password,
+            isAdmin,
+        },
+    });
+    return user;
 };
 
 export { getUserById, insertUser };

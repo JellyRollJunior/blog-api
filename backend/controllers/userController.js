@@ -1,5 +1,5 @@
+import bcrypt from 'bcryptjs';
 import * as db from '../model/db.js';
-import { bcrypt } from 'bcryptjs';
 
 const postUser = async (req, res) => {
     try {
@@ -10,8 +10,8 @@ const postUser = async (req, res) => {
         res.json(user);
     } catch (error) {
         return error.code == 'P2002'
-            ? res.json({ error: 'Username already in already taken.' })
-            : res.json({ error: 'Error signing up. Please try again later.' });
+            ? res.status(400).json({ error: 'Username already in already taken.' })
+            : res.status(500).json({ error: 'Error signing up. Please try again later.' });
     }
 };
 
