@@ -26,9 +26,7 @@ const insertUser = async (username, password, isAdmin = false) => {
         });
         return user;
     } catch (error) {
-        throw (error.code == 'P2002')
-            ? new Error('Username already in use')
-            : new Error('Error creating user');
+        throw error;
     }
 };
 

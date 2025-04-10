@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const app = express();
+app.use(express.urlencoded({ extended: false })); // enable data from post req
 
 // init server
 const PORT = 3000;
