@@ -1,4 +1,5 @@
 import { PrismaClient } from '@prisma/client';
+import { DatabaseError } from '../errors/DatabaseError.js';
 
 const prisma = new PrismaClient();
 
@@ -11,19 +12,25 @@ const getUserById = async (id) => {
         });
         return user;
     } catch (error) {
-        throw new Error('Error retrieving user');
+        throw new DatabaseError('Error retrieving user');
     }
 };
 
 const insertUser = async (username, password, isAdmin = false) => {
-    const user = await prisma.user.create({
-        data: {
-            username,
-            password,
-            isAdmin,
-        },
-    });
-    return user;
+    try {
+        const user = await prisma.user.create({
+            data: {
+                username,
+                password,
+                isAdmin,
+            },
+        });
+        return user;
+    } catch (error) {
+        throw error.code == 'P2002'
+            ? new DatabaseError('Username already is already taken.', 400)
+            : new DatabaseError('Error signing up. Please try again later.');
+    }
 };
 
 export { getUserById, insertUser };

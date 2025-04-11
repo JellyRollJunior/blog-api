@@ -1,5 +1,6 @@
 import bcrypt from 'bcryptjs';
 import * as db from '../model/db.js';
+import { DatabaseError } from '../errors/DatabaseError.js';
 
 const postUser = async (req, res) => {
     try {
@@ -9,9 +10,10 @@ const postUser = async (req, res) => {
         const user = await db.insertUser(username, hashedPassword);
         res.json(user);
     } catch (error) {
-        return error.code == 'P2002'
-            ? res.status(400).json({ error: 'Username already in already taken.' })
-            : res.status(500).json({ error: 'Error signing up. Please try again later.' });
+        if (error instanceof DatabaseError) {
+            return res.status(error.statusCode).json({ error: error.message });
+        }
+        res.status(500).json({ error: 'Error signing up. Please try again later.' });
     }
 };
 
