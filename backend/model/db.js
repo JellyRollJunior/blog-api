@@ -3,11 +3,11 @@ import { DatabaseError } from '../errors/DatabaseError.js';
 
 const prisma = new PrismaClient();
 
-const getUserById = async (id) => {
+const getUserByUsername = async (username) => {
     try {
         const user = prisma.user.findFirst({
             where: {
-                id: Number(id),
+                username
             },
         });
         return user;
@@ -33,4 +33,4 @@ const insertUser = async (username, password, isAdmin = false) => {
     }
 };
 
-export { getUserById, insertUser };
+export { getUserByUsername, insertUser };
