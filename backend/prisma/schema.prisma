@@ -19,4 +19,13 @@ model User {
   isAdmin  Boolean @default(false)
   username String  @unique
   password String
+  posts    Post[]
+}
+
+model Post {
+  id       Int    @id @default(autoincrement())
+  author   User   @relation(fields: [authorId], references: [id])
+  authorId Int
+  title    String
+  content  String
 }
