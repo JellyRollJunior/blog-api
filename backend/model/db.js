@@ -46,6 +46,15 @@ const insertUser = async (username, password, isAdmin = false) => {
     }
 };
 
+const getPosts = async () => {
+    try {
+        const posts = await prisma.post.findMany();
+        return posts;
+    } catch (error) {
+        throw new DatabaseError('Error retrieving posts');
+    }
+}
+
 const insertPost = async (authorId, title, content) => {
     try {
         const post = await prisma.post.create({
@@ -58,9 +67,9 @@ const insertPost = async (authorId, title, content) => {
         return post;
     } catch (error) {
         throw error.code == 'P2003'
-            ? new DatabaseError('Author does not have permission to create posts.')
+            ? new DatabaseError('Author does not have permission to create posts.', 401)
             : new DatabaseError('Error creating post');
     }
 };
 
-export { getUserById, getUserByUsername, insertUser, insertPost };
+export { getUserById, getUserByUsername, insertUser, getPosts, insertPost };
