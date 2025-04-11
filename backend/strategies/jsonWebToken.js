@@ -5,15 +5,18 @@ dotenv.config();
 
 const JwtStrategy = passportJwt.Strategy;
 const ExtractJwt = passportJwt.ExtractJwt;
+
 const options = {
     jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
     secretOrKey: process.env.TOKEN_SECRET,
-}
-
+};
 const jwtStrategy = new JwtStrategy(options, async (jwt_payload, done) => {
     const user = await db.getUserById(jwt_payload.id);
-    const {password, ...authData} = user;
-    done(null, authData);
-})
+    if ((jwtStrategy.username = user.username)) {
+        const { password, ...authData } = user;
+        return done(null, authData);
+    }
+    return done(null, false);
+});
 
-export { jwtStrategy }
+export { jwtStrategy };
