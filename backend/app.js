@@ -12,7 +12,6 @@ app.use(express.urlencoded({ extended: true })); // enable data from post req
 passport.use(jwtStrategy);
 
 // routes
-app.get('/', (req, res) => res.json('hey guys'));
 app.use('/auth', authRouter);
 app.use('/user', userRouter);
 app.use(

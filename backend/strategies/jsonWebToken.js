@@ -11,9 +11,9 @@ const options = {
 }
 
 const jwtStrategy = new JwtStrategy(options, async (jwt_payload, done) => {
-    console.log('hello');
-    const user = await db.getUserByUsername('chiikawa');
-    done(null, user);
+    const user = await db.getUserById(jwt_payload.id);
+    const {password, ...authData} = user;
+    done(null, authData);
 })
 
 export { jwtStrategy }
