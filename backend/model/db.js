@@ -103,6 +103,21 @@ const deletePost = async (id) => {
     }
 };
 
+const insertComment = async (postId, authorId, content) => {
+    try {
+        const comment = prisma.comment.create({
+            data: {
+                postId: Number(postId),
+                authorId: Number(authorId),
+                content,
+            },
+        });
+        return comment;
+    } catch (error) {
+        throw new DatabaseError('Error creating comment.');
+    }
+}
+
 export {
     getUserById,
     getUserByUsername,
@@ -111,4 +126,5 @@ export {
     insertPost,
     editPost,
     deletePost,
+    insertComment,
 };
