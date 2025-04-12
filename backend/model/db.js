@@ -138,6 +138,19 @@ const insertComment = async (postId, authorId, content) => {
     }
 }
 
+const deleteComment = async (id) => {
+    try {
+        const comment = prisma.comment.delete({
+            where: {
+                id,
+            }
+        })
+        return comment;
+    } catch (error) {
+        throw new DatabaseError('Error deleting comment');
+    }
+}
+
 export {
     getUserById,
     getUserByUsername,
@@ -148,4 +161,5 @@ export {
     deletePost,
     getComments,
     insertComment,
+    deleteComment,
 };
