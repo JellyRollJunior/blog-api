@@ -12,6 +12,12 @@ postsRouter.post(
     verifyAdmin,
     postController.postPost
 );
+postsRouter.put(
+    '/:postId',
+    passport.authenticate('jwt', { session: false }),
+    verifyAdmin,
+    postController.putPost
+);
 postsRouter.delete(
     '/:postId',
     passport.authenticate('jwt', { session: false }),

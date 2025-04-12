@@ -19,6 +19,17 @@ const postPost = async (req, res) => {
     }
 };
 
+const putPost = async (req, res) => {
+    try {
+        const postId = req.params.postId;
+        const { authorId, title, content } = req.body;
+        const post = await db.editPost(postId, authorId, title, content);
+        res.json(post);
+    } catch (error) {
+        res.status(error.statusCode).json({ error: error.message });
+    }
+};
+
 const deletePost = async (req, res) => {
     try {
         const postId = req.params.postId;
@@ -29,4 +40,4 @@ const deletePost = async (req, res) => {
     }
 };
 
-export { getPosts, postPost, deletePost };
+export { getPosts, postPost, putPost, deletePost };

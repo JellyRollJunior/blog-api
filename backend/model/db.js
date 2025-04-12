@@ -7,7 +7,7 @@ const getUserById = async (id) => {
     try {
         const user = prisma.user.findFirst({
             where: {
-                id,
+                id: Number(id),
             },
         });
         return user;
@@ -74,14 +74,14 @@ const insertPost = async (authorId, title, content) => {
 
 const editPost = async (id, authorId, title, content) => {
     try {
-        const post = prisma.post.update({
+        const post = await prisma.post.update({
             data: {
                 authorId,
                 title,
                 content,
             },
             where: {
-                id,
+                id: Number(id),
             },
         });
         return post;
