@@ -2,9 +2,9 @@ import express from 'express';
 import dotenv from 'dotenv';
 import passport from 'passport';
 import { jwtStrategy } from './strategies/jsonWebToken.js';
-import { userRouter } from './routes/userRouter.js';
+import { usersRouter } from './routes/usersRouter.js';
 import { authRouter } from './routes/authRouter.js';
-import { postRouter } from './routes/postRouter.js';
+import { postsRouter } from './routes/postsRouter.js';
 dotenv.config();
 
 const app = express();
@@ -14,8 +14,8 @@ passport.use(jwtStrategy);
 
 // routes
 app.use('/auth', authRouter);
-app.use('/users', userRouter);
-app.use('/posts', postRouter);
+app.use('/users', usersRouter);
+app.use('/posts', postsRouter);
 app.use(
     '/protected',
     passport.authenticate('jwt', { session: false }),
