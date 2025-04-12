@@ -7,7 +7,9 @@ const postUser = async (req, res) => {
         const username = req.body.username;
         const password = req.body.password;
         const hashedPassword = await bcrypt.hash(password, 10);
-        const user = await db.insertUser(username, hashedPassword);
+        const user = req.body.isAdmin
+            ? await db.insertUser(username, hashedPassword, true)
+            : await db.insertUser(username, hashedPassword);
         res.json(user);
     } catch (error) {
         if (error instanceof DatabaseError) {
