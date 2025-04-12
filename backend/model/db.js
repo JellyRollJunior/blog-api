@@ -110,7 +110,7 @@ const getComments = async (postId) => {
                 postId,
             },
             include: {
-                author: {
+                commenter: {
                     select: {
                         username: true,
                     }
@@ -123,12 +123,12 @@ const getComments = async (postId) => {
     }
 }
 
-const insertComment = async (postId, authorId, content) => {
+const insertComment = async (postId, commenterId, content) => {
     try {
         const comment = await prisma.comment.create({
             data: {
                 postId: Number(postId),
-                authorId: Number(authorId),
+                commenterId: Number(commenterId),
                 content,
             },
         });
@@ -142,7 +142,7 @@ const deleteComment = async (id) => {
     try {
         const comment = prisma.comment.delete({
             where: {
-                id,
+                id: Number(id),
             }
         })
         return comment;

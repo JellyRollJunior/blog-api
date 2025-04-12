@@ -27,6 +27,6 @@ postsRouter.delete(
 );
 
 // comments
-postsRouter.use('/:postId/comments', commentRouter);
+postsRouter.use('/', commentRouter);
 
 export { postsRouter };
