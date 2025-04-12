@@ -12,7 +12,7 @@ const getUserById = async (id) => {
         });
         return user;
     } catch (error) {
-        throw new DatabaseError('Error retrieving user');
+        throw new DatabaseError('Error retrieving user.');
     }
 };
 
@@ -25,7 +25,7 @@ const getUserByUsername = async (username) => {
         });
         return user;
     } catch (error) {
-        throw new DatabaseError('Error retrieving user');
+        throw new DatabaseError('Error retrieving user.');
     }
 };
 
@@ -51,9 +51,9 @@ const getPosts = async () => {
         const posts = await prisma.post.findMany();
         return posts;
     } catch (error) {
-        throw new DatabaseError('Error retrieving posts');
+        throw new DatabaseError('Error retrieving posts.');
     }
-}
+};
 
 const insertPost = async (authorId, title, content) => {
     try {
@@ -67,9 +67,29 @@ const insertPost = async (authorId, title, content) => {
         return post;
     } catch (error) {
         throw error.code == 'P2003'
-            ? new DatabaseError('Author does not have permission to create posts.', 401)
-            : new DatabaseError('Error creating post');
+            ? new DatabaseError('Author does not have permission to create posts.', 401)              
+            : new DatabaseError('Error creating post.');
     }
 };
 
-export { getUserById, getUserByUsername, insertUser, getPosts, insertPost };
+const deletePost = async (id) => {
+    try {
+        const post = await prisma.post.delete({
+            where: {
+                id: Number(id),
+            },
+        });
+        return post;
+    } catch (error) {
+        throw new DatabaseError('Error deleting post.');
+    }
+};
+
+export {
+    getUserById,
+    getUserByUsername,
+    insertUser,
+    getPosts,
+    insertPost,
+    deletePost,
+};
