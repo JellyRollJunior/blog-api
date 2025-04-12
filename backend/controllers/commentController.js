@@ -1,5 +1,15 @@
 import * as db from '../model/db.js';
 
+const getComments = async (req, res, next) => {
+    try {
+        const postId = req.params.postId;
+        const comments = await db.getComments(postId);
+        res.json(comments);
+    } catch (error) {
+        next(error);
+    }
+};
+
 const postComment = async (req, res) => {
     try {
         const postId = req.params.postId;
@@ -12,4 +22,4 @@ const postComment = async (req, res) => {
     }
 };
 
-export { postComment };
+export { getComments, postComment };
