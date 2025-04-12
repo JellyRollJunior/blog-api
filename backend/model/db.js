@@ -72,6 +72,24 @@ const insertPost = async (authorId, title, content) => {
     }
 };
 
+const editPost = async (id, authorId, title, content) => {
+    try {
+        const post = prisma.post.update({
+            data: {
+                authorId,
+                title,
+                content,
+            },
+            where: {
+                id,
+            },
+        });
+        return post;
+    } catch (error) {
+        throw new DatabaseError('Error editing post.');
+    }
+};
+
 const deletePost = async (id) => {
     try {
         const post = await prisma.post.delete({
@@ -91,5 +109,6 @@ export {
     insertUser,
     getPosts,
     insertPost,
+    editPost,
     deletePost,
 };
