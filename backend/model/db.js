@@ -103,7 +103,27 @@ const deletePost = async (id) => {
     }
 };
 
-const getComments = async (postId) => {
+const getCommentById = async (id) => {
+    try {
+        const comments = await prisma.comment.findMany({
+            where: {
+                id: Number(id),
+            },
+            include: {
+                commenter: {
+                    select: {
+                        username: true,
+                    }
+                }
+            }
+        })
+        return comments;
+    } catch (error) {
+        throw new DatabaseError('Error retrieving comment.');
+    }
+}
+
+const getCommentsByPost = async (postId) => {
     try {
         const comments = await prisma.comment.findMany({
             where: {
@@ -159,7 +179,8 @@ export {
     insertPost,
     editPost,
     deletePost,
-    getComments,
+    getCommentById,
+    getCommentsByPost,
     insertComment,
     deleteComment,
 };
