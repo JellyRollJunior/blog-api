@@ -12,5 +12,6 @@ postsRouter.post(
     verifyAdmin,
     postController.postPost
 );
+postsRouter.delete('/:postId', postController.deletePost);
 
 export { postsRouter };

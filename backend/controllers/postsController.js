@@ -19,4 +19,14 @@ const postPost = async (req, res) => {
     }
 };
 
-export { getPosts, postPost };
+const deletePost = async (req, res) => {
+    try {
+        const postId = req.params.postId;
+        const deletedPost = await db.deletePost(postId);
+        res.json(deletedPost);
+    } catch (error) {
+        res.status(error.statusCode).json({ error: error.message });
+    }
+};
+
+export { getPosts, postPost, deletePost };
