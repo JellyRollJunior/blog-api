@@ -5,6 +5,7 @@ import { verifyAdmin } from '../middleware/verifyAdmin.js';
 
 const postsRouter = Router();
 
+postsRouter.get('/', postController.getPosts);
 postsRouter.post(
     '/',
     passport.authenticate('jwt', { session: false }),

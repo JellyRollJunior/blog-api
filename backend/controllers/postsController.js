@@ -1,5 +1,14 @@
 import * as db from '../model/db.js';
 
+const getPosts = async (req, res) => {
+    try {
+        const posts = await db.getPosts();
+        res.json(posts);
+    } catch (error) {
+        res.status(error.statusCode).json({ error: error.message });
+    }
+};
+
 const postPost = async (req, res) => {
     try {
         const { authorId, title, content } = req.body;
@@ -10,4 +19,4 @@ const postPost = async (req, res) => {
     }
 };
 
-export { postPost }
+export { getPosts, postPost };
