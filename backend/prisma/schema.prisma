@@ -15,17 +15,30 @@ datasource db {
 }
 
 model User {
-  id       Int     @id @default(autoincrement())
-  isAdmin  Boolean @default(false)
-  username String  @unique
+  id       Int       @id @default(autoincrement())
+  isAdmin  Boolean   @default(false)
+  username String    @unique
   password String
   posts    Post[]
+  comments Comment[]
 }
 
 model Post {
-  id       Int    @id @default(autoincrement())
-  author   User   @relation(fields: [authorId], references: [id])
-  authorId Int
-  title    String
-  content  String
+  id          Int       @id @default(autoincrement())
+  author      User      @relation(fields: [authorId], references: [id])
+  authorId    Int
+  title       String
+  content     String
+  comments    Comment[]
+  publishTime DateTime  @default(now())
+}
+
+model Comment {
+  id        Int      @id @default(autoincrement())
+  author    User     @relation(fields: [authorId], references: [id])
+  authorId  Int
+  post      Post     @relation(fields: [postId], references: [id])
+  postId    Int
+  content   String
+  createdAt DateTime @default(now())
 }
