@@ -12,6 +12,11 @@ postsRouter.post(
     verifyAdmin,
     postController.postPost
 );
-postsRouter.delete('/:postId', postController.deletePost);
+postsRouter.delete(
+    '/:postId',
+    passport.authenticate('jwt', { session: false }),
+    verifyAdmin,
+    postController.deletePost
+);
 
 export { postsRouter };
