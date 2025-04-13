@@ -48,7 +48,13 @@ const insertUser = async (username, password, isAdmin = false) => {
 
 const getPosts = async () => {
     try {
-        const posts = await prisma.post.findMany();
+        const posts = await prisma.post.findMany({
+            where: {
+                publishTime: {
+                    lte: new Date(),
+                }
+            }
+        });
         return posts;
     } catch (error) {
         throw new DatabaseError('Error retrieving posts.');
