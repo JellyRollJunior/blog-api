@@ -16,11 +16,17 @@ passport.use(jwtStrategy);
 app.use('/auth', authRouter);
 app.use('/users', usersRouter);
 app.use('/posts', postsRouter);
-app.use(
-    '/protected',
-    passport.authenticate('jwt', { session: false }),
-    (req, res) => res.json('secret route!')
-);
+
+// error handling
+app.use(/(.*)/, (req, res, next) => {
+    res.status(404).json({ error: '404 Page not found' });
+});
+app.use((error, req, res, next) => {
+    if (error && error.statusCode) {
+        return res.status(error.statusCode).json({ error: error.message });
+    }
+    res.status(500).json({ error: error.message });
+});
 
 // init server
 const PORT = 3000;
