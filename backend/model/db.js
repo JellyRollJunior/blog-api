@@ -67,7 +67,10 @@ const insertPost = async (authorId, title, content) => {
         return post;
     } catch (error) {
         throw error.code == 'P2003'
-            ? new DatabaseError('Author does not have permission to create posts.', 401)              
+            ? new DatabaseError(
+                  'Author does not have permission to create posts.',
+                  401
+              )
             : new DatabaseError('Error creating post.');
     }
 };
@@ -113,15 +116,15 @@ const getCommentById = async (id) => {
                 commenter: {
                     select: {
                         username: true,
-                    }
-                }
-            }
-        })
+                    },
+                },
+            },
+        });
         return comments;
     } catch (error) {
         throw new DatabaseError('Error retrieving comment.');
     }
-}
+};
 
 const getCommentsByPost = async (postId) => {
     try {
@@ -133,15 +136,15 @@ const getCommentsByPost = async (postId) => {
                 commenter: {
                     select: {
                         username: true,
-                    }
-                }
-            }
-        })
+                    },
+                },
+            },
+        });
         return comments;
     } catch (error) {
         throw new DatabaseError('Error retrieving comments.');
     }
-}
+};
 
 const insertComment = async (postId, commenterId, content) => {
     try {
@@ -156,20 +159,36 @@ const insertComment = async (postId, commenterId, content) => {
     } catch (error) {
         throw new DatabaseError('Error creating comment.');
     }
-}
+};
+
+const updateComment = async (id, content) => {
+    try {
+        const comment = await prisma.comment.update({
+            where: {
+                id: Number(id),
+            },
+            data: {
+                content,
+            },
+        });
+        return comment;
+    } catch (error) {
+        throw new DatabaseError('Error updating comment');
+    }
+};
 
 const deleteComment = async (id) => {
     try {
-        const comment = prisma.comment.delete({
+        const comment = await prisma.comment.delete({
             where: {
                 id: Number(id),
-            }
-        })
+            },
+        });
         return comment;
     } catch (error) {
         throw new DatabaseError('Error deleting comment');
     }
-}
+};
 
 export {
     getUserById,
