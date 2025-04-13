@@ -161,7 +161,7 @@ const insertComment = async (postId, commenterId, content) => {
     }
 };
 
-const updateComment = async (id, content) => {
+const editComment = async (id, content) => {
     try {
         const comment = await prisma.comment.update({
             where: {
@@ -201,6 +201,6 @@ export {
     getCommentById,
     getCommentsByPost,
     insertComment,
-    updateComment,
+    editComment,
     deleteComment,
 };
