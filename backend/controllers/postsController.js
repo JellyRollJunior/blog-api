@@ -13,7 +13,8 @@ const postPost = async (req, res, next) => {
     try {
         const { title, content } = req.body;
         const authorId = req.user.id;
-        const post = await db.insertPost(authorId, title, content);
+        const publishTime = new Date(req.body.publishTime);
+        const post = await db.insertPost(authorId, title, content, publishTime);
         res.json(post);
     } catch (error) {
         next(error);
