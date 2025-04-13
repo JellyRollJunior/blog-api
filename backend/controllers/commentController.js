@@ -1,3 +1,4 @@
+import { validationResult } from 'express-validator';
 import { DatabaseError } from '../errors/DatabaseError.js';
 import * as db from '../model/db.js';
 
@@ -19,6 +20,10 @@ const getComments = async (req, res, next) => {
 
 const postComment = async (req, res, next) => {
     try {
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.status(400).json({ errors: errors.array() });
+        }
         const postId = req.params.postId;
         const commenterId = req.user.id;
         const content = req.body.content;
@@ -31,6 +36,10 @@ const postComment = async (req, res, next) => {
 
 const putComment = async (req, res, next) => {
     try {
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.status(400).json({ errors: errors.array() });
+        }
         const commentId = req.params.commentId;
         const userIsCommenter = await isUserCommenter(req, commentId)
         if (userIsCommenter) {
