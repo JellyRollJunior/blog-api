@@ -8,6 +8,12 @@ import { postValidation } from '../validations/postValidation.js';
 const postsRouter = Router();
 
 postsRouter.get('/', postController.getPosts);
+postsRouter.get(
+    '/admin',
+    passport.authenticate('jwt', { session: false }),
+    verifyAdmin,
+    postController.getAllPosts
+);
 postsRouter.post(
     '/',
     passport.authenticate('jwt', { session: false }),

@@ -61,6 +61,15 @@ const getPosts = async () => {
     }
 };
 
+const getAllPosts = async () => {
+    try {
+        const posts = await prisma.post.findMany();
+        return posts;
+    } catch (error) {
+        throw new DatabaseError('Error retrieving posts.');
+    }
+};
+
 const insertPost = async (authorId, title, content, publishTime = Date.now()) => {
     try {
         const post = await prisma.post.create({
@@ -200,6 +209,7 @@ export {
     getUserByUsername,
     insertUser,
     getPosts,
+    getAllPosts,
     insertPost,
     editPost,
     deletePost,

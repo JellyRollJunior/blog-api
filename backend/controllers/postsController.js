@@ -10,6 +10,15 @@ const getPosts = async (req, res, next) => {
     }
 };
 
+const getAllPosts = async (req, res, next) => {
+    try {
+        const posts = await db.getAllPosts();
+        res.json(posts);
+    } catch (error) {
+        next(error);
+    }
+}
+
 const postPost = async (req, res, next) => {
     try {
         const errors = validationResult(req);
@@ -53,4 +62,4 @@ const deletePost = async (req, res, next) => {
     }
 };
 
-export { getPosts, postPost, putPost, deletePost };
+export { getPosts, getAllPosts, postPost, putPost, deletePost };
