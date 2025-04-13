@@ -16,7 +16,7 @@ const postLogin = async (req, res) => {
     }
     // Auth successful: sign token with user info
     const options = {
-        expiresIn: 60
+        expiresIn: 60 * 60
     };
     const token = jwt.sign(
         { id: user.id, username: user.username, isAdmin: user.isAdmin },

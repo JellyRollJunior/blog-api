@@ -13,12 +13,15 @@ commentRouter.post(
     passport.authenticate('jwt', { session: false }),
     commentController.postComment
 );
+commentRouter.put(
+    '/:postId/comments/:commentId',
+    passport.authenticate('jwt', { session: false }),
+    commentController.putComment
+);
 commentRouter.delete(
     '/:postId/comments/:commentId',
     passport.authenticate('jwt', { session: false }),
     commentController.deleteComment
 )
-
-
 
 export { commentRouter };

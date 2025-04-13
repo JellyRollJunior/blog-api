@@ -201,5 +201,6 @@ export {
     getCommentById,
     getCommentsByPost,
     insertComment,
+    updateComment,
     deleteComment,
 };

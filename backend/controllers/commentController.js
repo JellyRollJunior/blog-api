@@ -23,25 +23,38 @@ const postComment = async (req, res) => {
     }
 };
 
+const isUserCommenter = async (req, commentId) => {
+    const username = req.user.username;
+    const comment = await db.getCommentById(commentId);
+    return comment.length > 0 && username == comment[0].commenter.username;
+}
+
+const putComment = async (req, res, next) => {
+    try {
+        const commentId = req.params.commentId;
+        const userIsCommenter = await isUserCommenter(req, commentId)
+        if (userIsCommenter) {
+            const content = req.body.content;
+            const comment = await db.updateComment(commentId, content);
+            return res.json(comment);
+        }
+        throw new DatabaseError('Error updating comment.');
+    } catch (error) {
+        next(error);
+    }
+}
+
 const deleteComment = async (req, res, next) => {
     try {
         const commentId = req.params.commentId;
-        const username = req.user.username;
-        const comment = await db.getCommentById(commentId);
-        // delete comment if user is commenter or admin
-        if (
-            comment.length > 0 &&
-            (username == comment[0].commenter.username || req.user.isAdmin)
-        ) {
-            await db.deleteComment(commentId);
+        const userIsCommenter = await isUserCommenter(req, commentId)
+        if (userIsCommenter || req.user.isAdmin) {
+            const comment = await db.deleteComment(commentId);
             return res.json(comment);
         }
-        throw (comment.length > 0)
-            ? new DatabaseError('Not authorized to delete this comment.', 401)
-            : new DatabaseError('Error deleting comment.', 500);
     } catch (error) {
         next(error);
     }
 };
 
-export { getComments, postComment, deleteComment };
+export { getComments, postComment, putComment, deleteComment };
