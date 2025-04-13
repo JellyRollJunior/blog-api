@@ -79,13 +79,14 @@ const insertPost = async (authorId, title, content, publishTime = Date.now()) =>
     }
 };
 
-const editPost = async (id, authorId, title, content) => {
+const editPost = async (id, authorId, title, content, publishTime) => {
     try {
         const post = await prisma.post.update({
             data: {
                 authorId,
                 title,
                 content,
+                publishTime,
             },
             where: {
                 id: Number(id),

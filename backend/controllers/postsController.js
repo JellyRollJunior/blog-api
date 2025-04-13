@@ -1,4 +1,5 @@
 import * as db from '../model/db.js';
+import { validationResult } from 'express-validator';
 
 const getPosts = async (req, res, next) => {
     try {
@@ -11,8 +12,12 @@ const getPosts = async (req, res, next) => {
 
 const postPost = async (req, res, next) => {
     try {
-        const { title, content } = req.body;
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.status(400).json({ errors: errors.array()});
+        }
         const authorId = req.user.id;
+        const { title, content } = req.body;
         const publishTime = new Date(req.body.publishTime);
         const post = await db.insertPost(authorId, title, content, publishTime);
         res.json(post);
@@ -23,10 +28,15 @@ const postPost = async (req, res, next) => {
 
 const putPost = async (req, res, next) => {
     try {
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.status(400).json({ errors: errors.array()});
+        }
         const postId = req.params.postId;
-        const { title, content } = req.body;
         const authorId = req.user.id;
-        const post = await db.editPost(postId, authorId, title, content);
+        const { title, content } = req.body;
+        const publishTime = new Date(req.body.publishTime);
+        const post = await db.editPost(postId, authorId, title, content, publishTime);
         res.json(post);
     } catch (error) {
         next(error);
