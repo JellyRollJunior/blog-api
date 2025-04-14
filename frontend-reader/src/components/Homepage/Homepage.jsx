@@ -5,8 +5,7 @@ const Homepage = () => {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-    getRequest('/posts')
-      .then((data) => setPosts(data));
+    getRequest('/posts', 'Error retrieving posts.').then((data) => setPosts(data));
   }, []);
 
   return (
@@ -15,7 +14,7 @@ const Homepage = () => {
       <h1>Blog Name</h1>
       <main>
         <ul>
-          {posts.map((post) => {
+          {posts && posts.map((post) => {
             return (
               <li>
                 <h2>{post.title}</h2>
