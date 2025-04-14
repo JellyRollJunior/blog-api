@@ -1,18 +1,11 @@
 # blog-api
 
-# todo:
-
--   published feature?
--   descriptive errors
--   retrieve user data from tokens!
--   cors
-
 #### Endpoints
 
 | METHOD | URI                                | Function            |
 | ------ | ---------------------------------- | ------------------- |
+| POST   | /users                             | Create user         |
 | POST   | /auth/login                        | Login user          |
-| POST   | /user                              | Create user         |
 | GET    | /posts                             | Get all posts       |
 | POST   | /posts                             | Create post         |
 | PUT    | /posts/:postId                     | Update post         |

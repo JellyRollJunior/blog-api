@@ -1,6 +1,7 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import passport from 'passport';
+import cors from 'cors';
 import { jwtStrategy } from './strategies/jsonWebToken.js';
 import { usersRouter } from './routes/usersRouter.js';
 import { authRouter } from './routes/authRouter.js';
@@ -8,6 +9,7 @@ import { postsRouter } from './routes/postsRouter.js';
 dotenv.config();
 
 const app = express();
+app.use(cors())
 app.use(express.json());
 app.use(express.urlencoded({ extended: true })); // enable data from post req
 passport.use(jwtStrategy);
