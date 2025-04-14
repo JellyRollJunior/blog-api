@@ -1,4 +1,4 @@
-function Homepage() {
+const Homepage = () => {
   return (
     <>
       <header>This is a header</header>
