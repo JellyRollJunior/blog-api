@@ -1,5 +1,7 @@
+import { Homepage } from "../Homepage/Homepage";
+
 function App() {
-  return <h1>Hello world</h1>;
+  return <Homepage></Homepage>;
 }
 
 export { App };
