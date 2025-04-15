@@ -9,7 +9,8 @@ body > div > * {
 }
 
 /* Header styles */
-header {
+header,
+.error {
   width: 100%;
   text-align: center;
 }
@@ -19,6 +20,10 @@ header {
   margin: 8px 24px 0 auto;
 }
 
+h1 {
+  font-size: 2.2rem;
+}
+
 h1,
 h1 + p {
   margin-top: 6px;
@@ -26,6 +31,7 @@ h1 + p {
 
 /* Post Styles */
 .postHolder {
+  padding: 0;
   margin-top: 32px;
   list-style: none;
 }
@@ -35,6 +41,6 @@ h2 {
   margin-top: 16px;
 }
 
-ul h2+p {
+ul h2 + p {
   margin-top: 6px;
 }
