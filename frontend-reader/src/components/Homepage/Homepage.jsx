@@ -5,7 +5,21 @@ const Homepage = () => {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-    getRequest('/posts', 'Error retrieving posts.').then((data) => setPosts(data));
+    const controller = new AbortController();
+    const fetchPosts = async () => {
+      try {
+        const data = await getRequest('/posts', controller.signal)
+        setPosts(data);
+      } catch (error) {
+        if (error.name === 'AbortError') {
+          console.log('Aborted');
+          return;
+        }
+      }
+    }
+
+    fetchPosts();
+    return () => controller.abort();
   }, []);
 
   return (

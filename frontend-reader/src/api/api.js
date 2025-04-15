@@ -1,17 +1,16 @@
 const SERVER_URL = 'http://localhost:3000';
 
-const getRequest = async (endpoint, errorMessage, headers = {}) => {
+const getRequest = async (endpoint, signal = null, headers = {}) => {
     try {
         const response = await fetch(`${SERVER_URL}${endpoint}`, {
             mode: 'cors',
-            headers: headers,
+            signal,
+            headers,
         });
         if (!response.ok) {
-            throw new Error(errorMessage);
+            throw new Error(`HTTP error: status ${response.status}`);
         }
-        const json = await response.json();
-        console.log(json)
-        return json;
+        return response.json();
     } catch (error) {
         console.error(error);
         return null;
