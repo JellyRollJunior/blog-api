@@ -1,4 +1,5 @@
-import { usePosts } from "../../hooks/usePosts.js";
+import { usePosts } from '../../hooks/usePosts.js';
+import { ArticlePreview } from '../ArticlePreview/ArticlePreview.jsx';
 
 const Homepage = () => {
   const posts = usePosts();
@@ -9,15 +10,9 @@ const Homepage = () => {
       <h1>Blog Name</h1>
       <main>
         <ul>
-          {posts && posts.map((post) => {
-            return (
-              <li>
-                <h2>{post.title}</h2>
-                <p>{post.content}</p>
-                <hr />
-              </li>
-            );
-          })}
+          {posts && posts.map((post) =>
+            <ArticlePreview post={post} />
+          )}
         </ul>
       </main>
     </>
