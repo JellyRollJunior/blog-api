@@ -1,7 +1,7 @@
 import { usePosts } from '../../hooks/usePosts.js';
 
 const Homepage = () => {
-  const {posts, loading, error} = usePosts();
+  const {posts, error, loading} = usePosts();
 
   return (
     <>
