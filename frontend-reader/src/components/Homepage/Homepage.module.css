@@ -29,3 +29,12 @@ h1 + p {
   margin-top: 32px;
   list-style: none;
 }
+
+hr,
+h2 {
+  margin-top: 16px;
+}
+
+ul h2+p {
+  margin-top: 6px;
+}
