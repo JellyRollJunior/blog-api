@@ -1,4 +1,5 @@
 import { usePosts } from '../../hooks/usePosts.js';
+import { Link } from 'react-router-dom';
 import styles from './Homepage.module.css';
 
 const Homepage = () => {
@@ -8,7 +9,9 @@ const Homepage = () => {
     <>
       <header>
         <nav>
-          <button className={styles.signInButton}>Sign in</button>
+          <Link to='signin'>
+            <button className={styles.signInButton}>Sign in</button>
+          </Link>
         </nav>
         <h1>The Chiikawa Chronicle</h1>
         <p>なんか小さくてかわいいやつ</p>
