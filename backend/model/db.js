@@ -61,6 +61,9 @@ const getPosts = async () => {
                     },
                 },
             },
+            orderBy: {
+                publishTime: 'desc',
+            },
         });
         return posts;
     } catch (error) {
