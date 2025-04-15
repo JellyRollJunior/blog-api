@@ -1,0 +1,47 @@
+.marginTopSmall {
+  margin-top: 6px;
+}
+
+.marginTopMedium {
+  margin-top: 12px;
+}
+
+.marginTopLarge {
+  margin-top: 24px;
+}
+
+/* card styles */
+.card {
+  border: 1px solid gray;
+  border-radius: 12px;
+}
+
+.formCard {
+  composes: card;
+  composes: marginTopLarge;
+  min-width: 350px;
+  padding: 24px 20px;
+}
+
+.cardTitle {
+  margin-top: 0;
+  margin-bottom: 18px;
+  text-align: center;
+}
+
+.cardLabel {
+  composes: marginTopMedium;
+  display: block;
+}
+
+.cardInput {
+  display: block;
+  height: 36px;
+  width: 100%;
+}
+
+.cardSubmitButton {
+  display: block;
+  min-width: 100px;
+  margin: 32px auto 0 auto;
+}

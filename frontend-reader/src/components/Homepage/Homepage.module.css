@@ -15,10 +15,6 @@ header,
   text-align: center;
 }
 
-header a {
-  text-decoration: none;
-}
-
 .signInButton {
   display: block;
   min-width: 74px;
