@@ -15,9 +15,22 @@ header,
   text-align: center;
 }
 
+header a {
+  text-decoration: none;
+}
+
 .signInButton {
   display: block;
+  min-width: 74px;
+  min-height: 32px;
   margin: 8px 24px 0 auto;
+  border: 1px solid gray;
+  border-radius: 12px;
+  transition: background-color 0.25s ease-out;
+}
+
+.signInButton:hover {
+  background-color: lightgray;
 }
 
 h1 {
