@@ -7,11 +7,13 @@ const Homepage = () => {
   return (
     <>
       <header>This is a header</header>
-      <h1>Chiikawa's Blog</h1>
+      <h1>The Chiikawa Chronicle</h1>
+      <p>なんか小さくてかわいいやつ</p>
       <main>
         {loading && <h2>loading</h2>}
         {posts && posts.length > 0 && (
-          <ul className={styles.articleHolder}>
+          <ul className={styles.postHolder}>
+            <hr />
             {posts.map((post) => (
               <li key={post.id}>
                 <h2>{post.title}</h2>
