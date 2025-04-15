@@ -1,16 +1,17 @@
 import { usePosts } from '../../hooks/usePosts.js';
+import styles from './Homepage.module.css';
 
 const Homepage = () => {
-  const {posts, error, loading} = usePosts();
+  const { posts, error, loading } = usePosts();
 
   return (
     <>
       <header>This is a header</header>
-      <h1>Blog Name</h1>
+      <h1>Chiikawa's Blog</h1>
       <main>
         {loading && <h2>loading</h2>}
         {posts && posts.length > 0 && (
-          <ul>
+          <ul className={styles.articleHolder}>
             {posts.map((post) => (
               <li key={post.id}>
                 <h2>{post.title}</h2>
