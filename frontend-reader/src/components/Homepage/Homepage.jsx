@@ -6,9 +6,13 @@ const Homepage = () => {
 
   return (
     <>
-      <header>This is a header</header>
-      <h1>The Chiikawa Chronicle</h1>
-      <p>なんか小さくてかわいいやつ</p>
+      <header>
+        <nav>
+          <button className={styles.signInButton}>Sign in</button>
+        </nav>
+        <h1>The Chiikawa Chronicle</h1>
+        <p>なんか小さくてかわいいやつ</p>
+      </header>
       <main>
         {loading && <h2>loading</h2>}
         {posts && posts.length > 0 && (
