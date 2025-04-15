@@ -17,7 +17,7 @@ const Homepage = () => {
             {posts.map((post) => (
               <li key={post.id}>
                 <h2>{post.title}</h2>
-                <p>{post.content}</p>
+                <p>{post.content.slice(0, 80)}{post.content.length > 80 && '...'}</p>
                 <p>By {post.author.username} • {post.publishTime}</p>
                 <hr />
               </li>
