@@ -18,7 +18,7 @@ const Homepage = () => {
               <li key={post.id}>
                 <h2>{post.title}</h2>
                 <p>{post.content}</p>
-                <p>By {post.author} • {post.publishTime}</p>
+                <p>By {post.author.username} • {post.publishTime}</p>
                 <hr />
               </li>
             ))}
