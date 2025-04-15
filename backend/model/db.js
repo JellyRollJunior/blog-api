@@ -53,7 +53,14 @@ const getPosts = async () => {
                 publishTime: {
                     lte: new Date(),
                 }
-            }
+            },
+            include: {
+                author: {
+                    select: {
+                        username: true,
+                    },
+                },
+            },
         });
         return posts;
     } catch (error) {
