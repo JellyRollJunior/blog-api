@@ -1,26 +1,7 @@
-import { useEffect, useState } from 'react';
-import { getRequest } from '../../api/api';
+import { usePosts } from "../../hooks/usePosts.js";
 
 const Homepage = () => {
-  const [posts, setPosts] = useState([]);
-
-  useEffect(() => {
-    const controller = new AbortController();
-    const fetchPosts = async () => {
-      try {
-        const data = await getRequest('/posts', controller.signal)
-        setPosts(data);
-      } catch (error) {
-        if (error.name === 'AbortError') {
-          console.log('Aborted');
-          return;
-        }
-      }
-    }
-
-    fetchPosts();
-    return () => controller.abort();
-  }, []);
+  const posts = usePosts();
 
   return (
     <>
