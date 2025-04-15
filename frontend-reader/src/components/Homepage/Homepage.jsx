@@ -1,14 +1,14 @@
 import { usePosts } from '../../hooks/usePosts.js';
 
 const Homepage = () => {
-  const posts = usePosts();
+  const {posts, loading, error} = usePosts();
 
   return (
     <>
       <header>This is a header</header>
       <h1>Blog Name</h1>
       <main>
-        {!posts && <div>loading</div>}
+        {loading && <h2>loading</h2>}
         {posts && posts.length > 0 && (
           <ul>
             {posts.map((post) => (
@@ -21,7 +21,8 @@ const Homepage = () => {
             ))}
           </ul>
         )}
-        {posts && posts.length == 0 && <div>No posts available</div>}
+        {posts && posts.length == 0 && <h2>No posts available</h2>}
+        {error && <h2>An error occurred. Please try again.</h2>}
       </main>
     </>
   );

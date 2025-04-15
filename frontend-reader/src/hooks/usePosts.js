@@ -2,7 +2,9 @@ import { useEffect, useState } from 'react';
 import { getRequest } from '../api/api.js';
 
 const usePosts = () => {
-    const [posts, setPosts] = useState([]);
+    const [posts, setPosts] = useState(null);
+    const [error, setError] = useState(null);
+    const [loading, setLoading] = useState(true);
 
     // fetch post data
     useEffect(() => {
@@ -12,10 +14,9 @@ const usePosts = () => {
                 const data = await getRequest('/posts', controller.signal);
                 setPosts(data);
             } catch (error) {
-                if (error.name === 'AbortError') {
-                    console.log('Aborted');
-                    return;
-                }
+                setError(error);
+            } finally {
+                setLoading(false);
             }
         };
         
@@ -24,7 +25,7 @@ const usePosts = () => {
         return () => controller.abort();
     }, []);
 
-    return posts;
+    return { posts, error, loading};
 };
 
 export { usePosts };
