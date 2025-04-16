@@ -2,10 +2,18 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './SigninPage.module.css';
 import sharedStyles from '../../styles/sharedStyles.module.css';
+import { postRequest } from '../../api/api.js';
 
 const SigninPage = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const body = { username, password};
+    const request = await postRequest('/auth/login', body, null, { "Content-Type": "application/json"})
+    console.log(request);
+  }
 
   return (
     <>
@@ -17,7 +25,7 @@ const SigninPage = () => {
       <main>
         <div className={sharedStyles.formCard}>
           <h2 className={sharedStyles.cardTitle}>Sign In</h2>
-          <form>
+          <form onSubmit={handleSubmit}>
             <label htmlFor="username" className={sharedStyles.cardLabel}>
               Username:
             </label>
