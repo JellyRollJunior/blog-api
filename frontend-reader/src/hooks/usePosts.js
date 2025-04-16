@@ -19,8 +19,9 @@ const usePosts = () => {
                 })
                 console.log(data);
                 setPosts(data);
-            } catch (error) {
-                setError(error);
+                setError(null);
+            } catch (err) {
+                setError(err.message);
             } finally {
                 setLoading(false);
             }

@@ -32,7 +32,7 @@ const Homepage = () => {
           </ul>
         )}
         {posts && posts.length == 0 && <h2>No posts available</h2>}
-        {error && <h2 className={styles.error}>An error occurred. Please try again.</h2>}
+        {error && <h2 className={styles.error}>{error}</h2>}
       </main>
     </>
   );
