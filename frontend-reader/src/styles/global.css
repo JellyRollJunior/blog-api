@@ -12,6 +12,7 @@ button {
   border: 1px solid gray;
   border-radius: 3px;
   transition: background-color 0.25s ease-out;
+  cursor: pointer;
 }
 
 button:hover {

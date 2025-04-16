@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import styles from './SigninPage.module.css';
 import shared from '../../styles/shared.module.css';
 import { postRequest } from '../../api/api.js';
+import { ReturnHomeButton } from '../ReturnHomeButton/ReturnHomeButton.jsx';
 
 const SigninPage = () => {
   const [username, setUsername] = useState('');
@@ -68,6 +69,7 @@ const SigninPage = () => {
           <h4 className={styles.signup}>
             Don't have an account? <Link to="signup">Sign up</Link>
           </h4>
+          <ReturnHomeButton />
         </div>
       </main>
     </>
