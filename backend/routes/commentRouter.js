@@ -3,7 +3,6 @@ import { Router } from 'express';
 import { commentValidation } from '../validations/commentValidation.js';
 import * as commentController from '../controllers/commentController.js';
 
-
 const commentRouter = Router();
 
 commentRouter.get(
