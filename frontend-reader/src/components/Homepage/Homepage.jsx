@@ -1,6 +1,7 @@
 import { usePosts } from '../../hooks/usePosts.js';
 import { Link } from 'react-router-dom';
 import styles from './Homepage.module.css';
+import shared from '../../styles/shared.module.css';
 
 const Homepage = () => {
   const { posts, error, loading } = usePosts();
@@ -32,7 +33,7 @@ const Homepage = () => {
           </ul>
         )}
         {posts && posts.length == 0 && <h2>No posts available</h2>}
-        {error && <h2 className={styles.error}>{error}</h2>}
+        {error && <h2 className={shared.error}>{error}</h2>}
       </main>
     </>
   );
