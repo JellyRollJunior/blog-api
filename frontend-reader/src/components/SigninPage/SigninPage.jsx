@@ -7,13 +7,26 @@ import { postRequest } from '../../api/api.js';
 const SigninPage = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   const handleSubmit = async (event) => {
-    event.preventDefault();
-    const body = { username, password};
-    const request = await postRequest('/auth/login', body, null, { "Content-Type": "application/json"})
-    console.log(request);
-  }
+    try {
+      // Request token and save to local storage
+      event.preventDefault();
+      const body = { username, password };
+      setLoading(true);
+      const request = await postRequest('/auth/login', body, null, {
+        'Content-Type': 'application/json',
+      });
+      console.log(request);
+      localStorage.setItem('token', request.token);
+    } catch (error) {
+      setError(error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <>
@@ -48,6 +61,8 @@ const SigninPage = () => {
               onChange={(event) => setPassword(event.target.value)}
               required
             />
+            {loading && <div>Loading...</div>}
+            {error && <div>{error}</div>}
             <button className={sharedStyles.cardSubmitButton}>Sign in</button>
           </form>
           <h4 className={styles.signup}>
