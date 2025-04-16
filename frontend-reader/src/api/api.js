@@ -12,4 +12,18 @@ const getRequest = async (endpoint, signal = null, headers = {}) => {
     return response.json();
 };
 
-export { getRequest };
+const postRequest = async (endpoint, body, signal = null, headers = {}) => {
+    const response = await fetch(`${SERVER_URL}${endpoint}`, {
+        mode: 'cors',
+        method: 'POST',
+        body: JSON.stringify(body),
+        signal,
+        headers,
+    });
+    if (!response.ok) {
+        throw new Error(`HTTP error: status ${response.status}`);
+    }
+    return response.json();
+}
+
+export { getRequest, postRequest };
