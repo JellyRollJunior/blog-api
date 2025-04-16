@@ -29,10 +29,13 @@ h1 + p {
   margin-top: 6px;
 }
 
+header p + hr {
+  margin-top: 32px;
+}
+
 /* Post Styles */
 .postHolder {
   padding: 0;
-  margin-top: 32px;
   list-style: none;
 }
 

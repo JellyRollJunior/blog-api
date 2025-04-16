@@ -16,12 +16,12 @@ const Homepage = () => {
         </nav>
         <h1>The Chiikawa Chronicle</h1>
         <p>なんか小さくてかわいいやつ</p>
+        <hr />
       </header>
       <main>
         {loading && <h2>loading</h2>}
         {posts && posts.length > 0 && (
           <ul className={styles.postHolder}>
-            <hr />
             {posts.map((post) => (
               <li key={post.id}>
                 <h2>{post.title}</h2>
