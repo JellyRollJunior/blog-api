@@ -20,10 +20,10 @@ const Homepage = () => {
           <ul className={styles.postHolder}>
             {posts.map((post) => (
               <li key={post.id}>
-                <h2>{post.title}</h2>
-                <p>{post.content.slice(0, 80)}{post.content.length > 80 && '...'}</p>
+                <h2 className={shared.marginTopXMedium}>{post.title}</h2>
+                <p className={shared.marginTopSmall}>{post.content.slice(0, 80)}{post.content.length > 80 && '...'}</p>
                 <p>By {post.author.username} • {post.publishTime}</p>
-                <hr />
+                <hr className={shared.marginTopXMedium} />
               </li>
             ))}
           </ul>
