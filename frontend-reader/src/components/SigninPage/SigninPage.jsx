@@ -4,6 +4,7 @@ import styles from './SigninPage.module.css';
 import shared from '../../styles/shared.module.css';
 import { postRequest } from '../../api/api.js';
 import { ReturnHomeButton } from '../ReturnHomeButton/ReturnHomeButton.jsx';
+import { Header } from '../Header/Header.jsx';
 
 const SigninPage = () => {
   const [username, setUsername] = useState('');
@@ -31,11 +32,11 @@ const SigninPage = () => {
 
   return (
     <>
-      <header>
-        <h1>The Chiikawa Chronicle</h1>
-        <p>なんか小さくてかわいいやつ</p>
-        <hr />
-      </header>
+      <Header>
+        <Link to='/'>
+          <button className={shared.navButton}>Main</button>
+        </Link>
+      </Header>
       <main>
         <div className={shared.formCard}>
           <h2 className={shared.cardTitle}>Sign In</h2>

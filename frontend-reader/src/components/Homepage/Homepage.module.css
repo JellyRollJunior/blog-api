@@ -8,31 +8,6 @@ body > div > * {
   max-width: 650px;
 }
 
-/* Header styles */
-header {
-  width: 100%;
-  text-align: center;
-}
-
-.signInButton {
-  min-width: 74px;
-  min-height: 32px;
-  margin: 8px 24px 0 auto;
-}
-
-h1 {
-  font-size: 2.2rem;
-}
-
-h1,
-h1 + p {
-  margin-top: 6px;
-}
-
-header p + hr {
-  margin-top: 32px;
-}
-
 /* Post Styles */
 .postHolder {
   padding: 0;

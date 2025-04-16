@@ -2,22 +2,18 @@ import { usePosts } from '../../hooks/usePosts.js';
 import { Link } from 'react-router-dom';
 import styles from './Homepage.module.css';
 import shared from '../../styles/shared.module.css';
+import { Header } from '../Header/Header.jsx';
 
 const Homepage = () => {
   const { posts, error, loading } = usePosts();
 
   return (
     <>
-      <header>
-        <nav>
-          <Link to='signin'>
-            <button className={styles.signInButton}>Sign in</button>
-          </Link>
-        </nav>
-        <h1>The Chiikawa Chronicle</h1>
-        <p>なんか小さくてかわいいやつ</p>
-        <hr />
-      </header>
+      <Header>
+        <Link to='signin'>
+          <button className={shared.navButton}>Sign in</button>
+        </Link>
+      </Header>
       <main>
         {loading && <h2>loading</h2>}
         {posts && posts.length > 0 && (
