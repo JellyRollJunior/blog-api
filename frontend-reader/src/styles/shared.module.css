@@ -44,3 +44,9 @@
   min-width: 100px;
   margin: 24px auto 0 auto;
 }
+
+.error {
+  width: 100%;
+  text-align: center;
+  color: red;
+}

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './SigninPage.module.css';
-import sharedStyles from '../../styles/sharedStyles.module.css';
+import shared from '../../styles/shared.module.css';
 import { postRequest } from '../../api/api.js';
 
 const SigninPage = () => {
@@ -36,34 +36,34 @@ const SigninPage = () => {
         <hr />
       </header>
       <main>
-        <div className={sharedStyles.formCard}>
-          <h2 className={sharedStyles.cardTitle}>Sign In</h2>
+        <div className={shared.formCard}>
+          <h2 className={shared.cardTitle}>Sign In</h2>
           <form onSubmit={handleSubmit}>
-            <label htmlFor="username" className={sharedStyles.cardLabel}>
+            {loading && <h4>Loading...</h4>}
+            {error && <h4 className={shared.error}>{error}</h4>}
+            <label htmlFor="username" className={shared.cardLabel}>
               Username:
             </label>
             <input
-              className={sharedStyles.cardInput}
+              className={shared.cardInput}
               type="text"
               id="username"
               value={username}
               onChange={(event) => setUsername(event.target.value)}
               required
             />
-            <label htmlFor="password" className={sharedStyles.cardLabel}>
+            <label htmlFor="password" className={shared.cardLabel}>
               Password:
             </label>
             <input
-              className={sharedStyles.cardInput}
+              className={shared.cardInput}
               type="password"
               id="password"
               value={password}
               onChange={(event) => setPassword(event.target.value)}
               required
             />
-            {loading && <div>Loading...</div>}
-            {error && <div>{error}</div>}
-            <button className={sharedStyles.cardSubmitButton}>Sign in</button>
+            <button className={shared.cardSubmitButton}>Sign in</button>
           </form>
           <h4 className={styles.signup}>
             Don't have an account? <Link to="signup">Sign up</Link>
