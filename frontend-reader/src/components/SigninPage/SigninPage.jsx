@@ -44,7 +44,7 @@ const SigninPage = () => {
         <div className={shared.formCard}>
           <h2 className={shared.cardTitle}>Sign In</h2>
           <form onSubmit={handleSubmit}>
-            {loading && <h4>Loading...</h4>}
+            {loading && <h4 className={styles.loading}>Authenticating...</h4>}
             {error && <h4 className={shared.error}>{error}</h4>}
             <label htmlFor="username" className={shared.cardLabel}>
               Username:

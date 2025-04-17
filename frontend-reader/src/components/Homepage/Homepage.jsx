@@ -12,7 +12,7 @@ const Homepage = () => {
   return (
     <>
       <Header>
-        {user && <h5>Hello {user.username}</h5>}
+        {user && <h5>Hello, {user.username}</h5>}
         {!user && (
           <Link to="signin">
             <button className={shared.navButton}>Sign in</button>
