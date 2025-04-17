@@ -8,8 +8,6 @@ const authenticateJwt = (req, res, next) => {
             return next(jwtError);
         }
         if (err || !user) {
-            console.log(err);
-            console.log(user);
             return next(info);
         }
         req.user = user;
