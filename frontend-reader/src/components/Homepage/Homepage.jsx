@@ -35,11 +35,13 @@ const Homepage = () => {
 
   return (
     <>
-      {user && <div>{user.username}</div>}
       <Header>
-        <Link to="signin">
-          <button className={shared.navButton}>Sign in</button>
-        </Link>
+        {user && <h5>Hello {user.username}</h5>}
+        {!user && (
+          <Link to="signin">
+            <button className={shared.navButton}>Sign in</button>
+          </Link>
+        )}
       </Header>
       <main>
         {loading && <h2>loading</h2>}
