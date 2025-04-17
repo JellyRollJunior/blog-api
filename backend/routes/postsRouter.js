@@ -4,33 +4,34 @@ import { Router } from 'express';
 import { verifyAdmin } from '../middleware/verifyAdmin.js';
 import { commentRouter } from './commentRouter.js';
 import { postValidation } from '../validations/postValidation.js';
+import { authenticateJwt } from '../middleware/authenticateJwt.js';
 
 const postsRouter = Router();
 
 postsRouter.get('/', postController.getPosts);
 postsRouter.get(
     '/admin',
-    passport.authenticate('jwt', { session: false }),
+    authenticateJwt,
     verifyAdmin,
     postController.getAllPosts
 );
 postsRouter.post(
     '/',
-    passport.authenticate('jwt', { session: false }),
+    authenticateJwt,
     verifyAdmin,
     postValidation,
     postController.postPost
 );
 postsRouter.put(
     '/:postId',
-    passport.authenticate('jwt', { session: false }),
+    authenticateJwt,
     verifyAdmin,
     postValidation,
     postController.putPost
 );
 postsRouter.delete(
     '/:postId',
-    passport.authenticate('jwt', { session: false }),
+    authenticateJwt,
     verifyAdmin,
     postController.deletePost
 );

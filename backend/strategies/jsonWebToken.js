@@ -11,10 +11,12 @@ const options = {
     secretOrKey: process.env.TOKEN_SECRET,
 };
 const jwtStrategy = new JwtStrategy(options, async (jwt_payload, done) => {
-    const user = await db.getUserById(jwt_payload.id);
-    if ((jwtStrategy.username = user.username)) {
-        const { password, ...authData } = user;
-        return done(null, authData);
+    if (jwt_payload.id) {
+        const user = await db.getUserById(jwt_payload.id);
+        if ((jwtStrategy.username = user.username)) {
+            const { password, ...authData } = user;
+            return done(null, authData);
+        }
     }
     return done(null, false);
 });

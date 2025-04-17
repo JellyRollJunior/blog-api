@@ -11,19 +11,19 @@ commentRouter.get(
 );
 commentRouter.post(
     '/:postId/comments',
-    passport.authenticate('jwt', { session: false }),
+    authenticateJwt,
     commentValidation,
     commentController.postComment
 );
 commentRouter.put(
     '/:postId/comments/:commentId',
-    passport.authenticate('jwt', { session: false }),
+    authenticateJwt,
     commentValidation,
     commentController.putComment
 );
 commentRouter.delete(
     '/:postId/comments/:commentId',
-    passport.authenticate('jwt', { session: false }),
+    authenticateJwt,
     commentController.deleteComment
 )
 
