@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import styles from './SigninPage.module.css';
-import shared from '../../styles/shared.module.css';
+import { useNavigate } from 'react-router-dom';
 import { postRequest } from '../../api/api.js';
 import { ReturnHomeButton } from '../ReturnHomeButton/ReturnHomeButton.jsx';
 import { Header } from '../Header/Header.jsx';
+import styles from './SigninPage.module.css';
+import shared from '../../styles/shared.module.css';
 
 const SigninPage = () => {
   const [username, setUsername] = useState('');
@@ -12,6 +13,7 @@ const SigninPage = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
+  let navigate = useNavigate(); 
   const handleSubmit = async (event) => {
     try {
       // Request token and save to local storage
@@ -23,6 +25,7 @@ const SigninPage = () => {
       });
       console.log(request);
       localStorage.setItem('token', request.token);
+      navigate('/');
     } catch (error) {
       setError(error.message);
     } finally {
