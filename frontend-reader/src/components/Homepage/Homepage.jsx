@@ -3,34 +3,10 @@ import { Link } from 'react-router-dom';
 import styles from './Homepage.module.css';
 import shared from '../../styles/shared.module.css';
 import { Header } from '../Header/Header.jsx';
-import { useEffect, useState } from 'react';
-import { getRequest } from '../../api/api.js';
+import { useUser } from '../../hooks/useUser.js';
 
 const Homepage = () => {
-  const [user, setUser] = useState(null);
-  useEffect(() => {
-    // if token exists, fetch user data
-    const token = localStorage.getItem('token');
-    const abortController = new AbortController();
-
-    if (token) {
-      getRequest('/users', abortController.signal, {
-        Authorization: `Bearer ${token}`,
-        'Content-Type': 'application/json',
-      })
-        .then((user) => setUser(user))
-        .catch((error) => {
-          // if unauthorized error, delete expired token
-          if (error.code == 401) {
-            localStorage.removeItem('token');
-            return null;
-          }
-        });
-    }
-
-    return () => abortController.abort();
-  }, []);
-
+  const user = useUser();
   const { posts, error, loading } = usePosts();
 
   return (
