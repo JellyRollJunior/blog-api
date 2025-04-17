@@ -1,10 +1,9 @@
-import * as postController from '../controllers/postsController.js';
-import passport from 'passport';
 import { Router } from 'express';
-import { verifyAdmin } from '../middleware/verifyAdmin.js';
-import { commentRouter } from './commentRouter.js';
-import { postValidation } from '../validations/postValidation.js';
 import { authenticateJwt } from '../middleware/authenticateJwt.js';
+import { verifyAdmin } from '../middleware/verifyAdmin.js';
+import { postValidation } from '../validations/postValidation.js';
+import { commentRouter } from './commentRouter.js';
+import * as postController from '../controllers/postsController.js';
 
 const postsRouter = Router();
 

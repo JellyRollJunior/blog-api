@@ -1,5 +1,5 @@
-import passport from 'passport';
 import { Router } from 'express';
+import { authenticateJwt } from '../middleware/authenticateJwt.js';
 import { commentValidation } from '../validations/commentValidation.js';
 import * as commentController from '../controllers/commentController.js';
 

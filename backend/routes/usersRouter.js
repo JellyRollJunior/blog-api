@@ -1,4 +1,5 @@
 import { Router } from 'express';
+import { authenticateJwt } from '../middleware/authenticateJwt.js';
 import { userValidation } from '../validations/userValidation.js';
 import * as usersController from '../controllers/usersController.js';
 
