@@ -8,7 +8,9 @@ const getRequest = async (endpoint, signal = null, headers = {}) => {
     });
     const json = await response.json();
     if (!response.ok) {
-        throw new Error(`${response.status}: ${json.error}`);
+        const error = new Error(`${response.status}: ${json.error}`);
+        error.code = response.status;
+        throw error;
     }
     return json;
 };
@@ -23,7 +25,9 @@ const postRequest = async (endpoint, body, signal = null, headers = {}) => {
     });
     const json = await response.json();
     if (!response.ok) {
-        throw new Error(`${json.error}`);
+        const error = new Error(`${response.status}: ${json.error}`);
+        error.code = response.status;
+        throw error;
     }
     return json;
 }
