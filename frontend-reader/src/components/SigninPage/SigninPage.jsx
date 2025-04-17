@@ -15,11 +15,11 @@ const SigninPage = () => {
 
   let navigate = useNavigate(); 
   const handleSubmit = async (event) => {
+    event.preventDefault();
+    setLoading(true);
     try {
       // Request token and save to local storage
-      event.preventDefault();
       const body = { username, password };
-      setLoading(true);
       const request = await postRequest('/auth/login', body, null, {
         'Content-Type': 'application/json',
       });
