@@ -8,7 +8,6 @@ const useUser = () => {
         // if token exists, fetch user data
         const token = localStorage.getItem('token');
         const abortController = new AbortController();
-
         if (token) {
             getRequest('/users', abortController.signal, {
                 Authorization: `Bearer ${token}`,
