@@ -25,14 +25,15 @@ const Homepage = () => {
           <ul className={styles.postHolder}>
             {posts.map((post) => (
               <li key={post.id}>
-                <h2 className={shared.marginTopXMedium}>{post.title}</h2>
-                <p className={shared.marginTopSmall}>
-                  {post.content.slice(0, 80)}
-                  {post.content.length > 80 && '...'}
-                </p>
-                <p>
-                  By {post.author.username} • {post.publishTime}
-                </p>
+                <Link to={`/posts/${post.id}`}>
+                  <h2 className={shared.marginTopXMedium}>{post.title}</h2>
+                  <p className={shared.marginTopSmall}>
+                    {post.content.slice(0, 80)}
+                    {post.content.length > 80 && '...'}
+                    <br />
+                    By {post.author.username} • {post.publishTime}
+                  </p>
+                </Link>
                 <hr className={shared.marginTopXMedium} />
               </li>
             ))}
