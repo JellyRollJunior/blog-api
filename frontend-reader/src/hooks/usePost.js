@@ -20,6 +20,9 @@ const usePost = (postId = 1) => {
                 console.log(post);
                 // convert date data
                 post.publishTime = iso8061ToDate(post.publishTime, 'MMMM do, yyy');
+                post.comments.map((comment) => {
+                    comment.createdAt = iso8061ToDate(comment.createdAt, 'MMMM do, yyy');
+                })
                 setPost(post);
                 setError(null);
             } catch (error) {
