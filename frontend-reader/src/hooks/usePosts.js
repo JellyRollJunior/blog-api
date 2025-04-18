@@ -7,7 +7,7 @@ const usePosts = () => {
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(true);
 
-    // fetch post data
+    // fetch posts data
     useEffect(() => {
         const controller = new AbortController();
         const fetchPosts = async () => {
@@ -16,23 +16,23 @@ const usePosts = () => {
                 data.map((post) => {
                     const date = new Date(post.publishTime);
                     post.publishTime = format(date, 'MMMM do, yyy');
-                })
+                });
                 console.log(data);
                 setPosts(data);
                 setError(null);
-            } catch (err) {
-                setError(err.message);
+            } catch (error) {
+                setError(error.message);
             } finally {
                 setLoading(false);
             }
         };
-        
+
         fetchPosts();
-        
+
         return () => controller.abort();
     }, []);
 
-    return { posts, error, loading};
+    return { posts, error, loading };
 };
 
 export { usePosts };

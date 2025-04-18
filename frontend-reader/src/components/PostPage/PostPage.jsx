@@ -1,40 +1,12 @@
 import { Link, useParams } from 'react-router-dom';
 import { Header } from '../Header/Header';
-import { useEffect, useState } from 'react';
-import { getRequest } from '../../api/api';
-import { format } from 'date-fns';
+import { usePost } from '../../hooks/usePost';
 import shared from '../../styles/shared.module.css';
 
 const PostPage = () => {
   const postId = useParams().postId;
 
-  const [post, setPost] = useState(null);
-  const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    const controller = new AbortController();
-
-    const fetchPost = async () => {
-      setLoading(true);
-      try {
-        const post = await getRequest(`/posts/${postId}`, controller.signal);
-        console.log(post);
-        const date = new Date(post.publishTime);
-        post.publishTime = format(date, 'MMMM do, yyy');
-        setPost(post);
-        setError(null);
-      } catch (error) {
-        setError(error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchPost();
-
-    return () => controller.abort();
-  }, [postId]);
+  const { post, error, loading } = usePost(postId);
 
   return (
     <>
@@ -44,6 +16,8 @@ const PostPage = () => {
         </Link>
       </Header>
       <main>
+        {loading && <h2>loading</h2>}
+        {error && <h2 className={shared.error}>{error.message}</h2>}
         <section className={shared.marginTopSmall}>
           {post && (
             <>
