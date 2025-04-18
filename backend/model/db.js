@@ -58,6 +58,15 @@ const getPostById = async (id) => {
                         username: true,
                     },
                 },
+                comments: {
+                    include: {
+                        commenter: {
+                            select: {
+                                username: true,
+                            }
+                        }
+                    }
+                },
             },
         });
         return post;
