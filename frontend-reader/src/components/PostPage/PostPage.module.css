@@ -13,6 +13,11 @@
   font-size: 1rem;
 }
 
+.deleteButton {
+  margin-left: 12px;
+  font-size: 1rem;
+}
+
 .commentForm {
   display: grid;
   grid-template-columns: 1fr 80px;

@@ -5,9 +5,11 @@ import shared from '../../styles/shared.module.css';
 import styles from './PostPage.module.css';
 import { useState } from 'react';
 import { postRequest } from '../../api/api';
+import { useUser } from '../../hooks/useUser';
 
 const PostPage = () => {
   const postId = useParams().postId;
+  const user = useUser();
   const { post, error, loading } = usePost(postId);
   const [comment, setComment] = useState('');
   const [commentError, setCommentError] = useState(null);
@@ -67,13 +69,18 @@ const PostPage = () => {
                   <h3 className={styles.commenter}>
                     <span className={styles.username}>{comment.commenter.username}</span>
                     <span className={styles.date}>  •  {comment.createdAt}</span>
+                    {user && user.username == comment.commenter.username && (
+                      <button className={styles.deleteButton}>Delete</button>
+                    )}
                   </h3>
                   <p>{comment.content}</p>
                 </li>
               ))}
             </ul>
           )}
-          {post && post.comments.length == 0 && <h1>No comments!</h1>}
+          {post && post.comments.length == 0 && (
+            <h3 className={shared.marginTopMedium}>No comments availble. Start the discussion!</h3>
+          )}
         </section>
         <section className={shared.marginTopXMedium}>
           {localStorage.getItem('token') && (
