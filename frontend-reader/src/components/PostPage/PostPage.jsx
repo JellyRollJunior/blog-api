@@ -3,11 +3,12 @@ import { Header } from '../Header/Header';
 import { usePost } from '../../hooks/usePost';
 import shared from '../../styles/shared.module.css';
 import styles from './PostPage.module.css';
+import { useUser } from '../../hooks/useUser';
 
 const PostPage = () => {
   const postId = useParams().postId;
-
   const { post, error, loading } = usePost(postId);
+  const user  = useUser(); 
 
   return (
     <>
@@ -45,6 +46,12 @@ const PostPage = () => {
             </ul>
           )}
           {post && post.comments.length == 0 && <h1>No comments!</h1>}
+        </section>
+        <section className={shared.marginTopXMedium}>
+          <form className={styles.commentForm}>
+            <textarea name="content" id="content" placeholder='Add a comment'></textarea>
+            <button>Reply</button>
+          </form>
         </section>
       </main>
     </>
