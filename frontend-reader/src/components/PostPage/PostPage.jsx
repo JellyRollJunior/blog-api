@@ -10,6 +10,7 @@ const PostPage = () => {
   const postId = useParams().postId;
   const { post, error, loading } = usePost(postId);
   const [comment, setComment] = useState('');
+  const [commentError, setCommentError] = useState(null);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -24,9 +25,16 @@ const PostPage = () => {
         'Content-Type': 'application/json',
       });
       console.log(newComment);
+      setCommentError(null);
       window.location.reload();
     } catch (error) {
+      // if unauthorized error, delete expired token
+      if (error.code == 401) {
+        localStorage.removeItem('token');
+      }
+      setCommentError('Error creating comment. Please try again later');
       console.log(error);
+      window.location.reload();
     }
   };
 
@@ -68,15 +76,22 @@ const PostPage = () => {
           {post && post.comments.length == 0 && <h1>No comments!</h1>}
         </section>
         <section className={shared.marginTopXMedium}>
-          <form className={styles.commentForm} onSubmit={handleSubmit}>
-            <textarea 
-              value={comment} 
-              onChange={(event) => setComment(event.target.value)} 
-              placeholder='Add a comment'
-              required
-              maxLength='120'></textarea>
-            <button>Reply</button>
-          </form>
+          {localStorage.getItem('token') && (
+            <>
+              {commentError && <h4 className={shared.error}>{commentError}</h4>}
+              <form className={styles.commentForm} onSubmit={handleSubmit}>
+                <textarea 
+                  value={comment} 
+                  onChange={(event) => setComment(event.target.value)} 
+                  placeholder='Add a comment'
+                  ></textarea>
+                <button>Reply</button>
+              </form>
+            </>
+          )}
+          {!localStorage.getItem('token') && (
+            <h3 className={shared.centerAlign}>Sign in to leave a comment!</h3>
+          )}
         </section>
       </main>
     </>

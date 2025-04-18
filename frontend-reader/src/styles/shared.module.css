@@ -26,8 +26,12 @@
   margin-top: 32px;
 }
 
-.rightAlign {
-  text-align: right;
+.startAlign {
+  text-align: start;
+}
+
+.centerAlign {
+  text-align: center;
 }
 
 .zeroPadding {
@@ -77,6 +81,5 @@
 
 .error {
   width: 100%;
-  text-align: center;
   color: red;
 }
