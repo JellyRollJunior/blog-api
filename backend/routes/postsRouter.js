@@ -7,6 +7,7 @@ import * as postController from '../controllers/postsController.js';
 
 const postsRouter = Router();
 
+postsRouter.get('/:postId', postController.getPost);
 postsRouter.get('/', postController.getPosts);
 postsRouter.get(
     '/admin',

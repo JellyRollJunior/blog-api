@@ -46,6 +46,26 @@ const insertUser = async (username, password, isAdmin = false) => {
     }
 };
 
+const getPostById = async (id) => {
+    try {
+        const post = await prisma.post.findUnique({
+            where: {
+                id: Number(id),
+            },
+            include: {
+                author: {
+                    select: {
+                        username: true,
+                    },
+                },
+            },
+        });
+        return post;
+    } catch (error) {
+        throw new DatabaseError('Error retrieving post.');
+    }
+}
+
 const getPosts = async () => {
     try {
         const posts = await prisma.post.findMany({
@@ -218,6 +238,7 @@ export {
     getUserById,
     getUserByUsername,
     insertUser,
+    getPostById,
     getPosts,
     getAllPosts,
     insertPost,

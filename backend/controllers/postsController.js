@@ -1,6 +1,16 @@
 import * as db from '../model/db.js';
 import { validationResult } from 'express-validator';
 
+const getPost = async (req, res, next) => {
+    try {
+        const postId = req.params.postId
+        const post = await db.getPostById(postId);
+        res.json(post);
+    } catch (error) {
+        next(error);
+    }
+}
+
 const getPosts = async (req, res, next) => {
     try {
         const posts = await db.getPosts();
@@ -62,4 +72,4 @@ const deletePost = async (req, res, next) => {
     }
 };
 
-export { getPosts, getAllPosts, postPost, putPost, deletePost };
+export { getPost, getPosts, getAllPosts, postPost, putPost, deletePost };
