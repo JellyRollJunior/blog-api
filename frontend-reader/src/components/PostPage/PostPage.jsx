@@ -4,7 +4,7 @@ import { usePost } from '../../hooks/usePost';
 import shared from '../../styles/shared.module.css';
 import styles from './PostPage.module.css';
 import { useState } from 'react';
-import { postRequest } from '../../api/api';
+import { deleteRequest, postRequest } from '../../api/api';
 import { useUser } from '../../hooks/useUser';
 
 const PostPage = () => {
@@ -36,9 +36,30 @@ const PostPage = () => {
       }
       setCommentError('Error creating comment. Please try again later');
       console.log(error);
-      window.location.reload();
     }
   };
+
+  const handleDelete = async (id) => {
+    try {
+      const token = localStorage.getItem('token');
+      if (!token) {
+        throw new Error('Not logged in. Please login to delete comment.');
+      }
+      const json = await deleteRequest(`/posts/${postId}/comments/${id}`, null, null, { 
+        'Authorization': `Bearer ${token}` 
+      });
+      console.log(json);
+      setCommentError(null);
+      window.location.reload();
+    } catch (error) {
+      // if unauthorized error, delete expired token
+      if (error.code == 401) {
+        localStorage.removeItem('token');
+      }
+      setCommentError('Error deleting comment. Please try again later');
+      console.log(error);
+    }
+  }
 
   return (
     <>
@@ -70,7 +91,7 @@ const PostPage = () => {
                     <span className={styles.username}>{comment.commenter.username}</span>
                     <span className={styles.date}>  •  {comment.createdAt}</span>
                     {user && user.username == comment.commenter.username && (
-                      <button className={styles.deleteButton}>Delete</button>
+                      <button className={styles.deleteButton} onClick={() => handleDelete(comment.id)}>Delete</button>
                     )}
                   </h3>
                   <p>{comment.content}</p>

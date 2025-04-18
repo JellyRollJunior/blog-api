@@ -32,4 +32,21 @@ const postRequest = async (endpoint, body, signal = null, headers = {}) => {
     return json;
 }
 
-export { getRequest, postRequest };
+const deleteRequest = async (endpoint, body, signal = null, headers = {}) => {
+    const response = await fetch(`${SERVER_URL}${endpoint}`, {
+        mode: 'cors',
+        method: 'DELETE',
+        body: JSON.stringify(body),
+        signal,
+        headers,
+    });
+    const json = response.json();
+    if (!response.ok) {
+        const error = new Error(json.error);
+        error.code = response.status;
+        throw new error;
+    }
+    return json;
+}
+
+export { getRequest, postRequest, deleteRequest };
