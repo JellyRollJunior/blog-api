@@ -1,0 +1,15 @@
+
+.commenter {
+  display: flex;
+  align-items: center;
+  white-space: pre;
+}
+
+.username {
+  font-size: 1.3rem
+}
+
+.date {
+  font-weight: normal;
+  font-size: 1rem;
+}
