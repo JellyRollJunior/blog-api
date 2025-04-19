@@ -12,8 +12,8 @@ const SigninPage = () => {
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const navigate = useNavigate(); 
 
-  let navigate = useNavigate(); 
   const handleSubmit = async (event) => {
     event.preventDefault();
     setLoading(true);
@@ -44,7 +44,7 @@ const SigninPage = () => {
         <div className={shared.formCard}>
           <h2 className={shared.cardTitle}>Sign In</h2>
           <form onSubmit={handleSubmit}>
-            {loading && <h4 className={styles.loading}>Authenticating...</h4>}
+            {loading && <h4 className={shared.centerAlign}>Authenticating...</h4>}
             {error && <h4 className={`${shared.error} ${shared.centerAlign}`}>{error}</h4>}
             <label htmlFor="username" className={shared.cardLabel}>
               Username:
