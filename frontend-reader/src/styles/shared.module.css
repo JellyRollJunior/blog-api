@@ -52,8 +52,8 @@
 
 .formCard {
   composes: card;
-  composes: marginTopLarge;
-  min-width: 350px;
+  max-width: 380px;
+  margin: 24px auto 0 auto;
   padding: 24px 20px;
 }
 
