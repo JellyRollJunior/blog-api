@@ -1,8 +1,8 @@
 import { Link, useParams } from 'react-router-dom';
-import { Header } from '../Header/Header';
 import { usePost } from '../../hooks/usePost';
-import shared from '../../styles/shared.module.css';
+import { Header } from '../Header/Header';
 import { CommentSection } from '../CommentSection/CommentSection';
+import shared from '../../styles/shared.module.css';
 
 const PostPage = () => {
   const postId = useParams().postId;
