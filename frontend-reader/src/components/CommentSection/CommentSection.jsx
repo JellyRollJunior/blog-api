@@ -1,9 +1,10 @@
 import { useParams } from 'react-router-dom';
 import { useState } from 'react';
-import { deleteRequest, postRequest } from '../../api/api';
-import { useUser } from '../../hooks/useUser';
+import { postRequest } from '../../api/api';
+import { useUser } from '../../hooks/useUser.js';
 import shared from '../../styles/shared.module.css';
 import styles from './CommentSection.module.css';
+import { Comment } from '../Comment/Comment.jsx';
 
 const CommentSection = ({post}) => {
   const postId = useParams().postId;
@@ -36,28 +37,6 @@ const CommentSection = ({post}) => {
     }
   };
 
-  const handleDelete = async (id) => {
-    try {
-      const token = localStorage.getItem('token');
-      if (!token) {
-        throw new Error('Not logged in. Please login to delete comment.');
-      }
-      const json = await deleteRequest(`/posts/${postId}/comments/${id}`, null, null, { 
-        'Authorization': `Bearer ${token}` 
-      });
-      console.log(json);
-      setCommentError(null);
-      window.location.reload();
-    } catch (error) {
-      // if unauthorized error, delete expired token
-      if (error.code == 401) {
-        localStorage.removeItem('token');
-      }
-      setCommentError('Error deleting comment. Please try again later');
-      console.log(error);
-    }
-  }
-
   return (
     <>
       <section>
@@ -67,17 +46,14 @@ const CommentSection = ({post}) => {
           <ul className={shared.zeroPadding}>
             {post.comments.map((comment) => (
               <li className={`${shared.marginTopSmall} ${styles.comment}`} key={comment.id}>
-                <h3 className={styles.commenter}>
-                  <span className={styles.username}>{comment.commenter.username}</span>
-                  <span className={styles.date}>  •  {comment.createdAt}</span>
-                  {user && user.username == comment.commenter.username && (
-                    <>
-                      <button className={styles.commentButton}>Edit</button>
-                      <button className={styles.commentButton} onClick={() => handleDelete(comment.id)}>Delete</button>
-                    </>
-                  )}
-                </h3>
-                <p>{comment.content}</p>
+                <Comment 
+                  id={comment.id} 
+                  username={comment.commenter.username} 
+                  createdAt={comment.createdAt} 
+                  content={comment.content} 
+                  user={user} 
+                  setCommentError={setCommentError} 
+                />
               </li>
             ))}
           </ul>
