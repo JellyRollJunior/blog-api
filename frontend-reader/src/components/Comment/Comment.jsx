@@ -1,7 +1,7 @@
+import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { deleteRequest, putRequest } from '../../api/api';
 import styles from './Comment.module.css';
-import { useState } from 'react';
 
 const Comment = ({
   id,

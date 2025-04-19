@@ -1,10 +1,10 @@
-import { useParams } from 'react-router-dom';
 import { useState } from 'react';
-import { postRequest } from '../../api/api';
+import { useParams } from 'react-router-dom';
 import { useUser } from '../../hooks/useUser.js';
+import { postRequest } from '../../api/api';
+import { Comment } from '../Comment/Comment.jsx';
 import shared from '../../styles/shared.module.css';
 import styles from './CommentSection.module.css';
-import { Comment } from '../Comment/Comment.jsx';
 
 const CommentSection = ({post}) => {
   const postId = useParams().postId;

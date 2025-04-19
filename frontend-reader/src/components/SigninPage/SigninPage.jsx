@@ -71,7 +71,7 @@ const SigninPage = () => {
             <button className={shared.cardSubmitButton}>Sign in</button>
           </form>
           <h4 className={styles.signup}>
-            Don't have an account? <Link to="signup">Sign up</Link>
+            Don't have an account? <Link to="/signup">Sign up</Link>
           </h4>
           <ReturnHomeButton />
         </div>

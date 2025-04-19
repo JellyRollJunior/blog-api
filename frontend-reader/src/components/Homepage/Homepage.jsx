@@ -1,9 +1,9 @@
-import { usePosts } from '../../hooks/usePosts.js';
 import { Link } from 'react-router-dom';
-import styles from './Homepage.module.css';
-import shared from '../../styles/shared.module.css';
+import { usePosts } from '../../hooks/usePosts.js';
 import { Header } from '../Header/Header.jsx';
 import { useUser } from '../../hooks/useUser.js';
+import styles from './Homepage.module.css';
+import shared from '../../styles/shared.module.css';
 
 const Homepage = () => {
   const user = useUser();
