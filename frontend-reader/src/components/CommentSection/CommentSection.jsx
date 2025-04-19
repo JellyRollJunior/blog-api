@@ -71,7 +71,10 @@ const CommentSection = ({post}) => {
                   <span className={styles.username}>{comment.commenter.username}</span>
                   <span className={styles.date}>  •  {comment.createdAt}</span>
                   {user && user.username == comment.commenter.username && (
-                    <button className={styles.deleteButton} onClick={() => handleDelete(comment.id)}>Delete</button>
+                    <>
+                      <button className={styles.commentButton}>Edit</button>
+                      <button className={styles.commentButton} onClick={() => handleDelete(comment.id)}>Delete</button>
+                    </>
                   )}
                 </h3>
                 <p>{comment.content}</p>
