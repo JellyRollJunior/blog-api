@@ -24,7 +24,7 @@ const Homepage = () => {
         {loading && <h2>loading</h2>}
         {posts && posts.length > 0 && (
           <ul className={styles.postHolder}>
-            {posts.map((post) => (
+            {posts.map((post, index) => (
               <li key={post.id}>
                 <Link to={`/posts/${post.id}`}>
                   <h2 className={shared.marginTopXMedium}>{post.title}</h2>
@@ -35,7 +35,7 @@ const Homepage = () => {
                     By {post.author.username} • {post.publishTime}
                   </p>
                 </Link>
-                <hr className={shared.marginTopXMedium} />
+                {index < (posts.length - 1) && <hr className={shared.marginTopXMedium} /> }
               </li>
             ))}
           </ul>
