@@ -5,7 +5,15 @@
 ```bash
 # Start backend server
 cd backend
+npm install
 node app.js
+```
+
+```bash
+# Start frontend react 
+cd frontend-reader
+npm install
+npm run dev
 ```
 
 ### Structure
@@ -43,6 +51,9 @@ node app.js
 ### Learning Outcomes
 
 -   Separating frontend and backend code (Jamstack)!
+    -   Thinking from API Client perspective:
+        -   What response data do I want when I make a request>
+        -   What format would make this data most efficient and usable?
 -   More complex prisma queries (nested queries)
 -   Sending relevant error codes/messages instead of default 500 server error
     -   Keep in mind return obj format + what frontend would like to see when receiving error
@@ -54,18 +65,8 @@ node app.js
 ### Retrospective aka yapping
 
 -   I quite like separating the frontend and backend. Previously, I found rendering views from the server side a bit cumbersome.
+-   Don't throw error from API call util. Let code that called the fetch request handle error
+-   Decided not to deploy / make admin portal for this project
+    - This project is a precursor from the ODIN BOOK project anyways
 
 ### Acknowledgements
-
-### TODOS:
-
-- footer
-- bug: bottom padding on homepage
-- feature: add more post mock data and comments
-- provider context user data -> move up to main
-- error 4040 page
-
-### think about it
-- Simplify request process -> lost of reused code tbh
-
-### BACKEND TODO:

@@ -1,3 +1,4 @@
+import { ErrorPage } from './components/ErrorPage/ErrorPage.jsx';
 import { Homepage } from './components/Homepage/Homepage.jsx';
 import { PostPage } from './components/PostPage/PostPage.jsx';
 import { SigninPage } from './components/SigninPage/SigninPage.jsx';
@@ -7,6 +8,7 @@ const routes = [
     {
         path: '/',
         element: <Homepage />,
+        errorElement: <ErrorPage />
     },
     {
         path: '/signin',
