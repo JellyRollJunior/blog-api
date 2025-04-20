@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom';
 import { usePosts } from '../../hooks/usePosts.js';
-import { Header } from '../Header/Header.jsx';
 import { useUser } from '../../hooks/useUser.js';
+import { Header } from '../Header/Header.jsx';
+import { Footer } from '../Footer/Footer.jsx';
 import styles from './Homepage.module.css';
 import shared from '../../styles/shared.module.css';
 
@@ -42,6 +43,7 @@ const Homepage = () => {
         {posts && posts.length == 0 && <h2>No posts available</h2>}
         {error && <h2 className={shared.error}>{error}</h2>}
       </main>
+      <Footer />
     </>
   );
 };
