@@ -1,0 +1,40 @@
+.footer {
+  width: 100%;
+  margin-top: auto;
+  text-align: center;
+}
+
+.footerSeparator {
+  margin-bottom: 12px
+}
+
+.iconHolder {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 3px;
+}
+
+.iconLink {
+  --link-button-size: 32px;
+  display: block;
+  width: var(--link-button-size);
+  height: var(--link-button-size);
+  padding: 0;
+  background-size: cover;
+}
+
+.github {
+  composes: iconLink;
+  background-image: url(../../assets/icons/icons8-github-60.png);
+}
+
+.linkedin {
+  composes: iconLink;
+  background-image: url(../../assets/icons/icons8-linkedin-60.png);
+}
+
+.instagram {
+  composes: iconLink;
+  background-image: url(../../assets/icons/icons8-instagram-60.png);
+}
