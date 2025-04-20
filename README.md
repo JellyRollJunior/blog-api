@@ -45,9 +45,27 @@ node app.js
 -   Separating frontend and backend code (Jamstack)!
 -   More complex prisma queries (nested queries)
 -   Sending relevant error codes/messages instead of default 500 server error
+    -   Keep in mind return obj format + what frontend would like to see when receiving error
+-   Relearning React (lol)
+    -   Custom hooks for data fetching
+    -   Actual error handling for response errors
+    -   Writing css framework esque css
 
 ### Retrospective aka yapping
 
 -   I quite like separating the frontend and backend. Previously, I found rendering views from the server side a bit cumbersome.
 
 ### Acknowledgements
+
+### TODOS:
+
+- footer
+- bug: bottom padding on homepage
+- feature: add more post mock data and comments
+- provider context user data -> move up to main
+- error 4040 page
+
+### think about it
+- Simplify request process -> lost of reused code tbh
+
+### BACKEND TODO:
