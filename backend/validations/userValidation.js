@@ -8,7 +8,7 @@ const userValidation = [
         .isLength({ min: 6, max: 24 }).withMessage(`Username ${LENGTH_ERROR}`),
     check('password').trim()
         .notEmpty().withMessage(`Password ${EMPTY_ERROR}`)
-        .isLength({ min: 6, max: 24 }).withMessage(`Password ${EMPTY_ERROR}`),
+        .isLength({ min: 6, max: 24 }).withMessage(`Password ${LENGTH_ERROR}`),
     check('isAdmin').trim()
         .optional()
         .isBoolean()

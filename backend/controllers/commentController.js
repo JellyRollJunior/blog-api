@@ -22,7 +22,7 @@ const postComment = async (req, res, next) => {
     try {
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
-            return res.status(400).json({ errors: errors.array() });
+            return res.status(400).json(new ValidationError('Error validating comment', errors.array()));
         }
         const postId = req.params.postId;
         const commenterId = req.user.id;
@@ -38,7 +38,7 @@ const putComment = async (req, res, next) => {
     try {
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
-            return res.status(400).json({ errors: errors.array() });
+            return res.status(400).json(new ValidationError('Error validating comment', errors.array()));
         }
         const commentId = req.params.commentId;
         const userIsCommenter = await isUserCommenter(req, commentId)
