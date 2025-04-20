@@ -2,8 +2,9 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { postRequest } from '../../api/api.js';
-import { ReturnHomeButton } from '../ReturnHomeButton/ReturnHomeButton.jsx';
 import { Header } from '../Header/Header.jsx';
+import { ReturnHomeButton } from '../ReturnHomeButton/ReturnHomeButton.jsx';
+import { Footer } from '../Footer/Footer.jsx';
 import styles from './SigninPage.module.css';
 import shared from '../../styles/shared.module.css';
 
@@ -76,6 +77,7 @@ const SigninPage = () => {
           <ReturnHomeButton />
         </div>
       </main>
+      <Footer />
     </>
   );
 };

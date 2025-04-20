@@ -2,6 +2,7 @@ import { Link, useParams } from 'react-router-dom';
 import { usePost } from '../../hooks/usePost';
 import { Header } from '../Header/Header';
 import { CommentSection } from '../CommentSection/CommentSection';
+import { Footer } from '../Footer/Footer';
 import shared from '../../styles/shared.module.css';
 
 const PostPage = () => {
@@ -29,6 +30,7 @@ const PostPage = () => {
         </section>
         <CommentSection post={post} />
       </main>
+      <Footer />
     </>
   );
 };

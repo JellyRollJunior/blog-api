@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { postRequest } from '../../api/api.js';
 import { Header } from '../Header/Header.jsx';
 import { ReturnHomeButton } from '../ReturnHomeButton/ReturnHomeButton.jsx';
+import { Footer } from '../Footer/Footer.jsx';
 import shared from '../../styles/shared.module.css';
 
 const SignupPage = () => {
@@ -97,6 +98,7 @@ const SignupPage = () => {
           </div>
         </div>
       </main>
+      <Footer />
     </>
   );
 };
